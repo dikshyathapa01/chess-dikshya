@@ -40,13 +40,6 @@ async function requestJson(url, options = {}) {
     return data;
 }
 
-function redirectIfLoggedIn() {
-    const session = loadSession();
-    if (session?.token && session?.user) {
-        window.location.replace('/game.html');
-    }
-}
-
 function bindLoginForm() {
     const loginForm = document.getElementById('loginForm');
     if (!loginForm) return;
@@ -103,6 +96,5 @@ function bindRegisterForm() {
     });
 }
 
-redirectIfLoggedIn();
 bindLoginForm();
 bindRegisterForm();

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game | Chess</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <h1 class="game-title">Chess<span class="dot">.</span></h1>
+
+            <div class="status-panel">
+                <h3 id="turnIndicator">White's Turn</h3>
+                <p id="gameStatus">Game is active</p>
+                <button id="resetBtn" class="btn primary-btn" type="button"><i class="fa-solid fa-rotate-right"></i> Reset Game</button>
+            </div>
+
+            <div class="info-panel">
+                <h4>Connection</h4>
+                <div class="connection-status">
+                    <span id="connIndicator" class="indicator online"></span>
+                    <span id="connText">Connected</span>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <h4>Player</h4>
+                <p class="player-name" id="currentUserName">-</p>
+                <button id="logoutBtn" class="btn" type="button">Logout</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="board-wrapper">
+                <div class="board-container">
+                    <div id="chessboard" class="chessboard"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

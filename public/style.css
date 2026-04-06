@@ -79,6 +79,143 @@ body {
     border: 1px solid var(--border-color);
 }
 
+.auth-panel {
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.auth-panel h4 {
+    margin-bottom: 0.75rem;
+}
+
+.auth-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.auth-tab {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.04);
+    font-family: inherit;
+    font-weight: 600;
+    padding: 0.6rem 0.5rem;
+    cursor: pointer;
+}
+
+.auth-tab.active {
+    background: var(--accent);
+    border-color: transparent;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.auth-form input {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: rgba(2, 6, 23, 0.7);
+    color: var(--text-primary);
+    padding: 0.7rem 0.8rem;
+    font-family: inherit;
+}
+
+.auth-form input::placeholder {
+    color: var(--text-secondary);
+}
+
+.auth-form input:focus {
+    outline: 2px solid rgba(59, 130, 246, 0.4);
+    border-color: var(--accent);
+}
+
+.session-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    font-size: 0.92rem;
+}
+
+.auth-message {
+    min-height: 1.2rem;
+    margin-top: 0.9rem;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+}
+
+.auth-message.error {
+    color: #f87171;
+}
+
+.auth-message.success {
+    color: #34d399;
+}
+
+.hidden {
+    display: none;
+}
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.auth-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.35rem;
+}
+
+.auth-subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 1.1rem;
+}
+
+.auth-switch {
+    margin-top: 0.9rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.auth-switch a {
+    color: #93c5fd;
+    text-decoration: none;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+.player-name {
+    color: var(--text-primary);
+    margin: 0.5rem 0 1rem;
+    word-break: break-word;
+}
+
 #turnIndicator {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;

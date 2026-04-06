@@ -2,7 +2,6 @@ import { prisma } from '../utils/prisma-client.js';
 import bcrypt from 'bcrypt';
 import { generateToken } from '../utils/json.js';
 
-// CREATE USER
 export const createUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -28,7 +27,6 @@ export const createUser = async (req, res) => {
   }
 };
 
-// LOGIN USER
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -54,7 +52,6 @@ export const loginUser = async (req, res) => {
   }
 };
 
-// GET ALL USERS (protected)
 export const getAllUsers = async (req, res) => {
   try {
     const users = await prisma.user.findMany();
@@ -65,7 +62,6 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-// GET ONE USER (protected)
 export const getOneUser = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -78,7 +74,6 @@ export const getOneUser = async (req, res) => {
   }
 };
 
-// DELETE USER (protected)
 export const deleteUser = async (req, res) => {
   try {
     const id = parseInt(req.params.id);

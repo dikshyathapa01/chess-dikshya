@@ -2,7 +2,7 @@ import express from 'express';
 import { Chess } from 'chess.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import router from './src/routes/router.js';
+import router from './routes/router.js';
 
 const app = express();
 const chess = new Chess();
@@ -11,7 +11,7 @@ let lastMove = null;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.json());
 app.use('/users', router);
 

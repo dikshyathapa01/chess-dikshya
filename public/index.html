@@ -3,47 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Chess</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome for standard icons and rich aesthetics -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.css">
+    <title>Chess Redirect</title>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Sidebar or Header logic for turn indication -->
-        <div class="sidebar">
-            <h1 class="game-title">Chess<span class="dot">.</span></h1>
-            <div class="status-panel">
-                <h3 id="turnIndicator">White's Turn</h3>
-                <p id="gameStatus">Game is active</p>
-                <button id="resetBtn" class="btn primary-btn"><i class="fa-solid fa-rotate-right"></i> Reset Game</button>
-            </div>
-            
-            <div class="info-panel">
-                <h4>Connection</h4>
-                <div class="connection-status">
-                    <span id="connIndicator" class="indicator online"></span>
-                    <span id="connText">Connected</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="main-content">
-            <div class="board-wrapper">
-                <!-- Ranks (1-8) and Files (a-h) indicators -->
-                <div class="board-container">
-                    <div id="chessboard" class="chessboard">
-                        <!-- Squares will be injected by app.js -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- HTTP Polling and Chess.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
-    <script src="app.js"></script>
+    <script>
+        (function () {
+            try {
+                const raw = localStorage.getItem('chessAuth');
+                const session = raw ? JSON.parse(raw) : null;
+                const isLoggedIn = !!(session && session.token && session.user);
+                window.location.replace(isLoggedIn ? '/game.html' : '/login.html');
+            } catch {
+                localStorage.removeItem('chessAuth');
+                window.location.replace('/login.html');
+            }
+        })();
+    </script>
 </body>
 </html>

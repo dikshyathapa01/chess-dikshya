@@ -5,10 +5,43 @@ const gameStatus = document.getElementById('gameStatus');
 const connIndicator = document.getElementById('connIndicator');
 const connText = document.getElementById('connText');
 const resetBtn = document.getElementById('resetBtn');
+const currentUserName = document.getElementById('currentUserName');
+const logoutBtn = document.getElementById('logoutBtn');
 
-let boardOrientation = 'w';
 let draggedPieceSquare = null;
 let serverGameState = null;
+
+function loadSession() {
+    const raw = localStorage.getItem('chessAuth');
+    if (!raw) return null;
+    try {
+        return JSON.parse(raw);
+    } catch {
+        localStorage.removeItem('chessAuth');
+        return null;
+    }
+}
+
+function clearSession() {
+    localStorage.removeItem('chessAuth');
+}
+
+const session = loadSession();
+if (!session?.token || !session?.user) {
+    window.location.replace('/login.html');
+    throw new Error('Unauthorized access to game page');
+}
+
+if (currentUserName) {
+    currentUserName.textContent = session.user.name || session.user.email || 'Player';
+}
+
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+        clearSession();
+        window.location.replace('/login.html');
+    });
+}
 
 const pieceMap = {
     'p': 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Chess_pdt45.svg',
@@ -342,6 +375,7 @@ function setConnectionStatus(isOnline) {
         }
     }
 }
+
 
 resetBtn.addEventListener('click', () => {
     fetch('/reset', { method: 'POST' })

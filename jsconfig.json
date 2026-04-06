@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "checkJs": false,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "module": "commonjs",
+    "target": "ES2021"
+  },
+  "include": [
+    "server.js",
+    "public/**/*.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

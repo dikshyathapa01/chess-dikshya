@@ -1,0 +1,17 @@
+{
+  "name": "multiplayer-chess",
+  "version": "1.0.0",
+  "description": "A simple multiplayer chess game with Node.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "chess.js": "^1.4.0",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "tinybench": "^4.0.1"
+  }
+}

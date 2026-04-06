@@ -1,0 +1,281 @@
+:root {
+    --bg-color: #0f172a;
+    --panel-bg: rgba(30, 41, 59, 0.7);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --dark-square: #475569;
+    --light-square: #e2e8f0;
+    --highlight: rgba(234, 179, 8, 0.6);
+    --possible-move: radial-gradient(circle, rgba(0,0,0,0.3) 25%, transparent 25%);
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top left, #1e293b, #020617);
+}
+
+.app-container {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+}
+
+.sidebar {
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 300px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.game-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.game-title .dot {
+    color: var(--accent);
+    -webkit-text-fill-color: var(--accent);
+}
+
+.status-panel, .info-panel {
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+#turnIndicator {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+#gameStatus {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: none;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.primary-btn {
+    background-color: var(--accent);
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ef4444;
+}
+
+.indicator.online {
+    background-color: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+}
+
+/* Chess Board */
+.board-wrapper {
+    padding: 1rem;
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+}
+
+.board-container {
+    width: 600px;
+    height: 600px;
+    border-radius: 8px;
+    overflow: hidden;
+    /* Extra subtle border */
+    border: 4px solid #1e293b;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 1024px) {
+    .board-container {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@media (max-width: 640px) {
+    .board-container {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+.chessboard {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    width: 100%;
+    height: 100%;
+}
+
+.square {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.square.light {
+    background-color: var(--light-square);
+    color: var(--dark-square);
+}
+
+.square.dark {
+    background-color: var(--dark-square);
+    color: var(--light-square);
+}
+
+.square.highlight {
+    background-color: var(--highlight) !important;
+}
+
+.square.selected {
+    box-shadow: inset 0 0 0 4px var(--accent);
+}
+
+.square.possible-move::after {
+    content: '';
+    position: absolute;
+    width: 30%;
+    height: 30%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+}
+
+.square.possible-capture::after {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    background: transparent;
+    border: 6px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+}
+
+/* Chess Piece styling focusing on unicode as placeholder, but styled beautifully */
+.piece {
+    font-size: 3rem; /* Dynamic based on square size mostly, but this is a fallback */
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    user-select: none;
+    transition: transform 0.1s ease;
+    /* Drop shadow to make pieces pop */
+    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.4));
+    width: 80%;
+    height: 80%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.piece-fallback {
+    font-family: "Segoe UI Symbol", "Noto Sans Symbols", serif;
+}
+
+.piece:hover {
+    transform: scale(1.1);
+}
+
+.piece:active {
+    cursor: grabbing;
+    transform: scale(1.15) translateY(-5px);
+    filter: drop-shadow(0 10px 8px rgba(0,0,0,0.6));
+}
+
+.dragging {
+    opacity: 0.5;
+}
+
+/* Coordinate labels optional */
+.square .coord {
+    position: absolute;
+    font-size: 0.7rem;
+    font-weight: bold;
+    opacity: 0.7;
+}
+
+.square .coord-file {
+    bottom: 2px;
+    right: 4px;
+}
+
+.square .coord-rank {
+    top: 2px;
+    left: 4px;
+}
